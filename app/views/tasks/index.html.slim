@@ -1,12 +1,13 @@
 h1 Listing tasks
 
-table
+table.table.table-hover
   thead
     tr
       th Title
       th Description
       th Status
-      th
+      th Owner
+      th Assigned
       th
       th
 
@@ -16,10 +17,16 @@ table
         td = task.title
         td = task.description
         td = task.status
-        td = link_to 'Show', task
-        td = link_to 'Edit', edit_task_path(task)
-        td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
-
+        - if task.owner
+          td = link_to task.owner.first_name, "/users/#{task.owner.id}"
+        - else
+          td
+        - if task.assigned
+          td = link_to task.assigned.first_name, "/users/#{task.assigned.id}"
+        - else
+          td
+        td = link_to 'Show', task, class: 'btn btn-outline-primary'
+        td = link_to 'Edit', edit_task_path(task), class: 'btn btn-outline-primary'
 br
 
-= link_to 'New Task', new_task_path
+= link_to 'Create New Task', new_task_path, class: 'btn-outline-primary btn-large btn'

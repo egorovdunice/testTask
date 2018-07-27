@@ -1,0 +1,8 @@
+@import "bootstrap";
+
+.btn.disabled:focus {
+  box-shadow: none;
+}
+.card.col-6 {
+  padding: 0;
+}

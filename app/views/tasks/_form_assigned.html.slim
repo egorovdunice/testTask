@@ -1,3 +1,8 @@
+p Title: #{@task.title}
+p Description: #{@task.description}
+p Owner: #{@task.owner.first_name} #{@task.owner.last_name}
+p Assigned to: #{@task.assigned&.first_name} #{@task.assigned&.last_name}
+
 = form_for @task do |f|
   - if @task.errors.any?
     #error_explanation
@@ -5,20 +10,10 @@
       ul
         - @task.errors.full_messages.each do |message|
           li = message
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control'
-  .form-group
-    = f.label :description
-    = f.text_field :description, class: 'form-control'
+
   .form-group
     = f.label :status
     = f.select :status, %w[new started finished], {}, {class: 'form-control'}
-  .form-group
-    = f.label :assigned_id
-      | Assigned person
-      span.text-muted | *optional
-    = f.select :assigned_id, @users, {}, {class: 'form-control'}
   .actions.btn-group.align-self-center
     = f.submit class: 'btn btn-outline-primary'
     = link_to 'Back', tasks_path, class: 'btn btn-outline-primary'

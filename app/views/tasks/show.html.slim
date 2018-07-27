@@ -1,15 +1,23 @@
 p#notice = notice
-
-p
-  strong Title:
-  = @task.title
-p
-  strong Description:
-  = @task.description
-p
-  strong Status:
-  = @task.status
-
-=> link_to 'Edit', edit_task_path(@task)
-'|
-=< link_to 'Back', tasks_path
+.row.justify-content-center
+  .card.col-6
+    h5.card-header Task №#{@task.id}
+    .card-body
+      h5.card-title Title: #{@task.title}
+      p.card-text
+        | Description:
+      p.card-text
+        = @task.description
+      p.card-title Status: #{@task.status}
+      p.card-title
+        | Owner:
+        =< link_to "#{@task.owner.first_name} #{@task.owner.last_name}", user_path(@task.owner.id)
+      p.card-title
+        | Assigned to:
+        =< link_to "#{@task.assigned&.first_name} #{@task.assigned&.last_name}", user_path(@task.assigned&.id)
+    .card-footer
+      .btn-group
+        - if @task.owner == current_user
+          = link_to 'Edit', edit_task_path(@task), class: 'btn btn-outline-primary'
+          = link_to 'Destroy', @task, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-outline-primary'
+        = link_to 'Back', tasks_path, class: 'btn btn-outline-primary'
