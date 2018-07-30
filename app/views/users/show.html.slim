@@ -1,6 +1,31 @@
-h1
-  = @user.first_name
-h1
-  = @user.last_name
-p
-  = @user.email
+.my-4
+  h5
+    span.font-weight-bold First name:
+    =< @user.first_name
+  h5
+    span.font-weight-bold Last name:
+    =< @user.last_name
+  h5
+    span.font-weight-bold Email:
+    =< @user.email
+  h5
+    span.font-weight-bold Registered_at:
+    =< @user.created_at
+.row.justify-content-center
+  .card.col-3
+    .card-header
+      h5 Owner of:
+    ul.list-group.list-group-flush
+      li.list-group-item Total tasks: #{@count[:owner][:total] || 0}
+      li.list-group-item 'New' tasks: #{@count[:owner]['new'] || 0}
+      li.list-group-item 'Started' tasks: #{@count[:owner]['started'] || 0}
+      li.list-group-item 'Finished' tasks: #{@count[:owner]['finished'] || 0}
+  .col-1
+  .card.col-3
+    .card-header
+      h5 Assigned to:
+    ul.list-group.list-group-flush
+      li.list-group-item  Total tasks: #{@count[:assigned][:total] || 0}
+      li.list-group-item 'New' tasks: #{@count[:assigned]['new'] || 0}
+      li.list-group-item 'Started' tasks: #{@count[:assigned]['started'] || 0}
+      li.list-group-item 'Finished' tasks: #{@count[:assigned]['finished'] || 0}

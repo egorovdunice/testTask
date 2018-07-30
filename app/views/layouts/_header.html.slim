@@ -8,7 +8,7 @@
           a.nav-link.dropdown-toggle#navbarDropdown href="#" role="button" data-toggle="dropdown" #{current_user.first_name} #{current_user.last_name}
           .dropdown-menu aria-labelledby="navbarDropdown"
             a.dropdown-item  href=user_path(current_user) Show profile
-            a.dropdown-item  href=edit_user_path(current_user) Edit profile
+            a.dropdown-item  href=edit_user_registration_path Edit profile
             a.dropdown-item  href='/users/sign_out' data-method='delete' Sign out
       - else
         a.nav-item.nav-link href="/users/sign_in" Sign In

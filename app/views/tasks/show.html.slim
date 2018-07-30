@@ -1,19 +1,25 @@
-p#notice = notice
-.row.justify-content-center
+.row.justify-content-center.my-4
   .card.col-6
-    h5.card-header Task №#{@task.id}
-    .card-body
-      h5.card-title Title: #{@task.title}
-      p.card-text
-        | Description:
-      p.card-text
-        = @task.description
-      p.card-title Status: #{@task.status}
-      p.card-title
-        | Owner:
+    .card-header
+      h5 Task №#{@task.id}
+    ul.list-group.list-group-flush
+      li.list-group-item
+        h5.card-title Title: #{@task.title}
+      li.list-group-item
+        span.font-weight-bold
+          | Description:
+        =< @task.description
+      li.list-group-item
+        span.font-weight-bold
+          | Status:
+        =< @task.status
+      li.list-group-item
+        span.font-weight-bold
+          | Owner:
         =< link_to "#{@task.owner.first_name} #{@task.owner.last_name}", user_path(@task.owner.id)
-      p.card-title
-        | Assigned to:
+      li.list-group-item
+        span.font-weight-bold
+          | Assigned to:
         =< link_to "#{@task.assigned&.first_name} #{@task.assigned&.last_name}", user_path(@task.assigned&.id)
     .card-footer
       .btn-group

@@ -3,8 +3,8 @@
 Rails.application.routes.draw do
   root to: 'statics#home'
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+      sessions: 'users/sessions'
   }
   resources :tasks
-  resources :users
+  resources :users, only: :show
 end
