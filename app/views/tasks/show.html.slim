@@ -20,7 +20,8 @@
       li.list-group-item
         span.font-weight-bold
           | Assigned to:
-        =< link_to "#{@task.assigned&.first_name} #{@task.assigned&.last_name}", user_path(@task.assigned&.id)
+        - if @task.assigned
+          =< link_to "#{@task.assigned.first_name} #{@task.assigned.last_name}", user_path(@task.assigned.id)
     .card-footer
       .btn-group
         - if @task.owner == current_user
