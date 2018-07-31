@@ -41,27 +41,33 @@ RSpec.describe TasksController, type: :controller do
       get :new
       expect(response.status).to eq(200)
     end
-    it 'create' do
+  end
+  describe 'POST create' do
+    it 'should create task with correct params' do
       post :create, params: { task: { title: 'abc', description: 'def', status: 'new' } }, format: :json
       expect(response.status).to eq(201)
     end
-    it 'error' do
+    it 'should through 422 error with incorrect params' do
       post :create, params: { task: { description: 'def', status: 'new' } }, format: :json
       expect(response.status).to eq(422)
     end
-    it 'destroy' do
+  end
+  describe 'DELETE destroy' do
+    it 'should redirect to /tasks with notice' do
       delete :destroy, params: { id: user1_task.id }
       expect(response).to redirect_to(tasks_path)
       expect(flash[:notice]).to eq('Task was successfully destroyed.')
     end
-    it 'update' do
+  end
+  describe 'PATCH update' do
+    it 'should update and redirect with notice' do
       patch :update, params: { id: user1_task.id, task: { title: 'test' } }
       user1_task.reload
       expect(user1_task.title).to eq('test')
       expect(response).to redirect_to(user1_task)
       expect(flash[:notice]).to eq('Task was successfully updated.')
     end
-    it 'update_error' do
+    it 'should through 422 error with incorrect params' do
       patch :update, params: { id: user1_task.id, task: { status: 'abc' } }, format: :json
       user1_task.reload
       expect(user1_task.status).to eq('new')
