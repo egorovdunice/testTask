@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This test RoR project.
 
-Things you may want to cover:
+To authenticate the User used the Devise gem.
 
-* Ruby version
+Testing made by Rspec.
 
-* System dependencies
+Locking User after 5 incorrect attempts.
 
-* Configuration
+Unlocking via mail or after 1 minutes (for testing purpose)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To send mail you should fill correct credentials in /config/environments/development.rb
